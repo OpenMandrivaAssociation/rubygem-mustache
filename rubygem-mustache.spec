@@ -1,8 +1,8 @@
 %define oname mustache
 
 Name:       rubygem-%{oname}
-Version:    0.11.2
-Release:    2
+Version:    1.1.1
+Release:    1
 Summary:    Mustache is a framework-agnostic way to render logic-free views
 Group:      Development/Ruby
 License:    MIT
@@ -34,7 +34,7 @@ template.
 rm -rf %buildroot
 mkdir -p %{buildroot}%{ruby_gemdir}
 gem install --local --install-dir %{buildroot}%{ruby_gemdir} \
-            --force --rdoc %{SOURCE0}
+            --force %{SOURCE0}
 mkdir -p %{buildroot}/%{_bindir}
 mv %{buildroot}%{ruby_gemdir}/bin/* %{buildroot}/%{_bindir}
 rmdir %{buildroot}%{ruby_gemdir}/bin
@@ -50,10 +50,3 @@ rm -rf %buildroot
 %doc %{ruby_gemdir}/doc/%{oname}-%{version}
 %{ruby_gemdir}/cache/%{oname}-%{version}.gem
 %{ruby_gemdir}/specifications/%{oname}-%{version}.gemspec
-
-
-%changelog
-* Sat Oct 09 2010 Rémy Clouard <shikamaru@mandriva.org> 0.11.2-1mdv2011.0
-+ Revision: 584334
-- import rubygem-mustache
-
