@@ -1,18 +1,13 @@
-%define oname mustache
-
-Name:       rubygem-%{oname}
+Name:       rubygem-mustache
 Version:    1.1.1
 Release:    1
 Summary:    Mustache is a framework-agnostic way to render logic-free views
 Group:      Development/Ruby
 License:    MIT
 URL:        http://github.com/defunkt/mustache
-Source0:    http://rubygems.org/gems/%{oname}-%{version}.gem
-BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}
-Requires:   rubygems
-BuildRequires: rubygems
+Source0:    http://rubygems.org/gems/%{gem_name}-%{version}.gem
 BuildArch:  noarch
-Provides:   rubygem(%{oname}) = %{version}
+BuildRequires:	ruby
 
 %description
 Inspired by ctemplate, Mustache is a framework-agnostic way to render
@@ -25,28 +20,15 @@ consisting of ERB or HAML with random helpers and arbitrary logic,
 your views are broken into two parts: a Ruby class and an HTML
 template.
 
-
 %prep
+%autosetup -p1 -n %{gem_name}-%{version}
 
 %build
+%gem_build
 
 %install
-rm -rf %buildroot
-mkdir -p %{buildroot}%{ruby_gemdir}
-gem install --local --install-dir %{buildroot}%{ruby_gemdir} \
-            --force %{SOURCE0}
-mkdir -p %{buildroot}/%{_bindir}
-mv %{buildroot}%{ruby_gemdir}/bin/* %{buildroot}/%{_bindir}
-rmdir %{buildroot}%{ruby_gemdir}/bin
-find %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/bin -type f | xargs chmod a+x
-
-%clean
-rm -rf %buildroot
+%gem_install
 
 %files
-%defattr(-, root, root, -)
 %{_bindir}/mustache
-%{ruby_gemdir}/gems/%{oname}-%{version}/
-%doc %{ruby_gemdir}/doc/%{oname}-%{version}
-%{ruby_gemdir}/cache/%{oname}-%{version}.gem
-%{ruby_gemdir}/specifications/%{oname}-%{version}.gemspec
+%{gem_files}
