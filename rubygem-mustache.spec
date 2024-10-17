@@ -4,7 +4,7 @@ Release:    2
 Summary:    Mustache is a framework-agnostic way to render logic-free views
 Group:      Development/Ruby
 License:    MIT
-URL:        http://github.com/defunkt/mustache
+URL:        https://github.com/defunkt/mustache
 Source0:    http://rubygems.org/gems/mustache-%{version}.gem
 BuildArch:  noarch
 BuildRequires:	ruby
